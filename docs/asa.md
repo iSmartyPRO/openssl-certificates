@@ -29,7 +29,7 @@ openssl ca -config ./ca/openssl.cnf -extensions v3_intermediate_ca -days 1825 -n
 
 #### Generate domain key
 ```
-openssl genrsa -aes256 -out ./asa/domains/private/demo.tc-professional.com.key.pem 2048
+openssl genrsa -aes256 -out ./domains/asa/private/demo.tc-professional.com.key.pem 2048
 ```
 
 #### Prepare CSR File for Certificate
@@ -41,5 +41,12 @@ openssl req -config ./domains/asa/openssl-cnf/demo.tc-professional.com.cnf -key 
 #### Sign and generate domain certificate
 
 ```
-openssl ca -config ./domains/asa/openssl-cnf/demo.tc-professional.com.cnf -extensions server_cert -days 2000 -notext -md sha256 -in ./domains/asa/csr/demo.tc-professional.com.csr.pem -out ./domains/asa/certs/demo.tc-professional.com.cert.pem
+openssl ca -config ./domains/asa/openssl-cnf/demo.tc-professional.com.cnf -extensions server_cert -days 730 -notext -md sha256 -in ./domains/asa/csr/demo.tc-professional.com.csr.pem -out ./domains/asa/certs/demo.tc-professional.com.cert.pem
+```
+
+
+#### Remove Password from SSL Key for WebServer Usage
+
+```
+openssl rsa -in .\demo.tc-professional.com.key -out .\demo.tc-professional.com-nopass.key
 ```
