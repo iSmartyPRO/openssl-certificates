@@ -1,4 +1,4 @@
-# OpenSSL intermediate CA configuration file.
+# OpenSSL domain configuration file.
 # Copy to `/root/ca/intermediate/openssl.cnf`.
 
 [ ca ]
@@ -16,8 +16,8 @@ serial            = $dir/serial
 RANDFILE          = $dir/private/.rand
 
 # The root key and root certificate.
-private_key       = $dir/../intermediate/private/iSmartyPRO-Dev.key.pem
-certificate       = $dir/../intermediate/certs/iSmartyPRO-Dev.cert.pem
+private_key       = $dir/../intermediate/private/asa.key.pem
+certificate       = $dir/../intermediate/certs/asa.cert.pem
 
 # For certificate revocation lists.
 crlnumber         = $dir/crlnumber
@@ -39,9 +39,9 @@ copy_extensions   = copy
 [ policy_strict ]
 # The root CA should only sign intermediate certificates that match.
 # See the POLICY FORMAT section of `man ca`.
-countryName             = match
-stateOrProvinceName     = match
-organizationName        = match
+countryName             = optional
+stateOrProvinceName     = optional
+organizationName        = optional
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
@@ -80,13 +80,13 @@ organizationalUnitName          = Organizational Unit Name
 emailAddress                    = Email Address
 
 # Optionally, specify some defaults.
-commonName_default              = dev.ismarty.pro
-countryName_default             = KG
-stateOrProvinceName_default     = Bishkek
-localityName_default            = Bishkek
-0.organizationName_default      = iSmartyPro
+commonName_default              = demo.tc-professional.com
+countryName_default             = RU
+stateOrProvinceName_default     = Moscow
+localityName_default            = Moscow
+0.organizationName_default      = Anchor Safety Academy
 organizationalUnitName_default  = Global
-emailAddress_default            = it@ismarty.pro
+emailAddress_default            = it@tc-professional.com
 
 [ v3_ca ]
 # Extensions for a typical CA (`man x509v3_config`).
@@ -125,7 +125,7 @@ authorityInfoAccess = OCSP;URI:http://ocsp2.example.com
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.1 = dev.ismarty.pro
+DNS.1 = demo.tc-professional.com
 
 [ crl_ext ]
 # Extension for CRLs (`man x509v3_config`).
